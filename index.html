@@ -10,79 +10,79 @@
     }
 
     body {
-      font-family: Arial, sans-serif; /* Fuente genérica para el cuerpo del documento */
-      margin: 2%; /* Márgenes alrededor del cuerpo del documento */
+      font-family: Arial, sans-serif;
+      margin: 2%;
     }
 
     .input-container {
-      margin-top: 2%; /* Espacio entre los contenedores de entrada */
+      margin-top: 2%;
     }
 
     label {
       display: block;
-      font-size: 2vh; /* Tamaño de fuente para las etiquetas */
+      font-size: 2vh;
     }
 
     select, input[type="text"], textarea {
-      width: 96%; /* Ancho del 96% del contenedor */
-      padding: 1vw; /* Relleno para los campos de entrada */
+      width: 96%;
+      padding: 1vw;
       display: block;
-      margin-top: 1.2vw; /* Espacio superior para los campos de entrada */
-      margin-bottom: 2.4vw; /* Espacio inferior para los campos de entrada */
-      font-size: 2vh; /* Tamaño de fuente para los campos de entrada */
-      border: 1px solid #ccc; /* Borde suave */
-      border-radius: 0.6vw; /* Bordes redondeados */
-      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1); /* Sombra suave */
+      margin-top: 1.2vw;
+      margin-bottom: 2.4vw;
+      font-size: 2vh;
+      border: 1px solid #ccc;
+      border-radius: 0.6vw;
+      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1);
     }
 
     textarea {
-      resize: vertical; /* Permitir redimensionar verticalmente */
+      resize: vertical;
     }
 
     select {
-      appearance: none; /* Eliminar la apariencia nativa del selector */
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23333%"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Agregar un ícono de flecha personalizado */
-      background-repeat: no-repeat; /* No repetir la imagen de fondo */
-      background-position: right 1.2vw center; /* Posición del ícono de la flecha */
-      padding-right: 3vw; /* Espacio para el ícono de la flecha */
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23333%"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 1.2vw center;
+      padding-right: 3vw;
     }
 
     button {
-      padding: 1vh 2vh; /* Relleno para los botones */
-      background-color: #007bff; /* Color de fondo del botón */
-      color: #fff; /* Color del texto del botón */
-      border: none; /* Sin borde */
-      border-radius: 0.6vh; /* Bordes redondeados */
-      cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
-      font-size: 1.5vh; /* Tamaño de fuente para los botones */
-      margin-top: 2vh; /* Espacio superior para el botón */
+      padding: 1vh 2vh;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 0.6vh;
+      cursor: pointer;
+      font-size: 1.5vh;
+      margin-top: 2vh;
     }
 
     button:hover {
-      background-color: #0056b3; /* Cambiar el color de fondo al pasar sobre el botón */
+      background-color: #0056b3;
     }
 
     #canvas-container {
       width: 96%;
-      height: 35vw;
-      border: 1px solid #ccc; /* Borde para el área de firma */
-      border-radius: 0.6vw; /* Bordes redondeados */
-      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1); /* Sombra suave */
-      position: relative; /* Posición relativa para el contenedor */
-      margin-top: 2vw; /* Espacio superior para el área de firma */
+      height: 300px; /* Ajustamos la altura del contenedor */
+      border: 1px solid #ccc;
+      border-radius: 0.6vw;
+      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1);
+      position: relative;
+      margin-top: 2vw;
     }
 
     canvas {
-      width: 100%;
-      height: 100%;
-      border-radius: 0.6vw; /* Bordes redondeados */
+      width: 100%; /* Ajustamos el ancho del canvas */
+      height: 100%; /* Ajustamos la altura del canvas */
+      border-radius: 0.6vw;
     }
 
     #fecha-hora {
-      position: absolute; /* Posición absoluta dentro del contenedor */
-      bottom: 0.5vw; /* Distancia desde abajo */
-      right: 0.5vw; /* Distancia desde la derecha */
-      font-size: 1vh; /* Tamaño de fuente más pequeño */
+      position: absolute;
+      bottom: 0.5vw;
+      right: 0.5vw;
+      font-size: 1vh;
     }
   </style>
 </head>
@@ -92,46 +92,8 @@
     <label for="numero-solicitud">Número de Solicitud:</label>
     <input type="text" id="numero-solicitud" name="numero-solicitud">
   </div>
-  <div class="input-container">
-    <label for="serie-equipo">Serie del Equipo:</label>
-    <input type="text" id="serie-equipo" name="serie-equipo">
-  </div>
-  <div class="input-container">
-    <label for="tipo-mantenimiento">Tipo de Mantenimiento:</label>
-    <select id="tipo-mantenimiento" name="tipo-mantenimiento">
-      <option value="Seleccionar" selected>Seleccionar</option>
-      <option value="Preventivo">Preventivo</option>
-      <option value="Correctivo">Correctivo</option>
-    </select>
-  </div>
-  <div class="input-container" id="descripcion-container" style="display: none;">
-    <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
-  </div>
-  <div class="input-container" id="especificaciones-container" style="display: none;">
-    <label for="especificaciones">Especificaciones del Servicio:</label>
-    <textarea id="especificaciones" name="especificaciones" rows="4"></textarea>
-  </div>
-  <div class="input-container" id="materiales-container" style="display: none;">
-    <label for="materiales">Materiales y Repuestos:</label>
-    <textarea id="materiales" name="materiales" rows="4"></textarea>
-  </div>
-  <div class="input-container" id="observaciones-container" style="display: none;">
-    <label for="observaciones">Observaciones:</label>
-    <textarea id="observaciones" name="observaciones" rows="4"></textarea>
-  </div>
-  <div class="input-container">
-    <label for="trabajo-realizado">Trabajo Realizado por:</label>
-    <select id="trabajo-realizado-nombre" name="trabajo-realizado-nombre">
-      <option value="Seleccionar" selected>Seleccionar</option>
-      <option value="SEBASTIAN DIAZ">SEBASTIAN DIAZ</option>
-      <option value="DIEGO REYES">DIEGO REYES</option>
-      <option value="BRAYAN MORA">BRAYAN MORA</option>
-      <option value="CARMEN RAMIREZ">CARMEN RAMIREZ</option>
-      <option value="VALENTINA BELTRAN">VALENTINA BELTRAN</option>
-      <option value="ANGELICA FORERO">ANGELICA FORERO</option>
-    </select>
-  </div>
+  <!-- Otros campos del formulario aquí -->
+  
   <div class="input-container">
     <label for="trabajo-recibido">Recibido por:</label>
     <input type="text" id="trabajo-recibido-nombre" name="trabajo-recibido-nombre" placeholder="Nombre">
@@ -147,13 +109,12 @@
   <script>
     var canvas = document.getElementById('trabajo-recibido-dibujo');
     var signaturePad = new SignaturePad(canvas, {
-      backgroundColor: 'rgb(255, 255, 255)', // Fondo blanco por defecto
-      penColor: 'rgb(0, 0, 0)', // Color de la pluma negro por defecto
-      minWidth: 1, // Ancho mínimo del trazo
-      maxWidth: 2 // Ancho máximo del trazo
+      backgroundColor: 'rgb(255, 255, 255)',
+      penColor: 'rgb(0, 0, 0)',
+      minWidth: 1,
+      maxWidth: 2
     });
 
-    // Función para obtener la fecha y hora actual en formato 12 horas con AM/PM
     function obtenerFechaHoraActual() {
       var fechaHoraActual = new Date();
       var fecha = fechaHoraActual.toLocaleDateString();
@@ -161,41 +122,16 @@
       return fecha + ' ' + hora;
     }
 
-    // Mostrar fecha y hora actual en el cuadro de texto
     document.getElementById('fecha-hora-valor').innerText = obtenerFechaHoraActual();
 
-    // Función para enviar el formulario
     function enviarFormulario() {
-      // Recopilar todos los datos del formulario
-      var numeroSolicitud = document.getElementById('numero-solicitud').value;
-      var serieEquipo = document.getElementById('serie-equipo').value;
-      var tipoMantenimiento = document.getElementById('tipo-mantenimiento').value;
-      var descripcion = document.getElementById('descripcion').value;
-      var especificaciones = document.getElementById('especificaciones').value;
-      var materiales = document.getElementById('materiales').value;
-      var observaciones = document.getElementById('observaciones').value;
-
-      // Obtener la imagen del canvas como base64
-      var dataURL = canvas.toDataURL(); // Esto convierte el contenido del canvas en una imagen base64
-
-      // Obtener la fecha y hora actual
+      var dataURL = canvas.toDataURL();
       var fechaActual = obtenerFechaHoraActual();
-
-      // Crear el objeto de datos a enviar
       var formData = {
-        numeroSolicitud: numeroSolicitud,
-        serieEquipo: serieEquipo,
-        tipoMantenimiento: tipoMantenimiento,
-        descripcion: descripcion,
-        especificaciones: especificaciones,
-        materiales: materiales,
-        observaciones: observaciones,
-        imagen: dataURL, // Agregar la imagen del canvas como una propiedad del objeto
-        fecha: fechaActual // Agregar la fecha actual al objeto
+        // Incluir aquí los datos del formulario
       };
 
-      // Realizar una solicitud POST al Script de Google Apps
-      fetch('url archivo', {
+      fetch('https://script.google.com/macros/s/AKfycbxTopc7gMQFfVtBA5CWjw6AxGhN05gPNSxWk7oDON1XyGV6-88pHMwPTUu9mzi1z0p0RQ/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -209,7 +145,6 @@
         return response.json();
       })
       .then(data => {
-        // Manejar la respuesta del servidor si es necesario
         console.log('Respuesta del servidor:', data);
       })
       .catch(error => {
@@ -217,42 +152,19 @@
       });
     }
 
-    // Mostrar/ocultar campos según el tipo de mantenimiento seleccionado
-    document.getElementById('tipo-mantenimiento').addEventListener('change', function() {
-      var tipoMantenimiento = this.value;
-      var descripcionContainer = document.getElementById('descripcion-container');
-      var especificacionesContainer = document.getElementById('especificaciones-container');
-      var materialesContainer = document.getElementById('materiales-container');
-      var observacionesContainer = document.getElementById('observaciones-container');
-      
-      if (tipoMantenimiento === 'Correctivo') {
-        descripcionContainer.style.display = 'block';
-        especificacionesContainer.style.display = 'block';
-        materialesContainer.style.display = 'block';
-        observacionesContainer.style.display = 'block';
-      } else {
-        descripcionContainer.style.display = 'none';
-        especificacionesContainer.style.display = 'none';
-        materialesContainer.style.display = 'none';
-        observacionesContainer.style.display = 'none';
-      }
-    });
-
-    // Redimensionar el canvas cuando cambia el tamaño de la ventana
     window.addEventListener('resize', function() {
-      // Obtener el contenedor del canvas y su nuevo tamaño
       var canvasContainer = document.getElementById('canvas-container');
       var width = canvasContainer.offsetWidth;
       var height = canvasContainer.offsetHeight;
-      
-      // Establecer el nuevo tamaño del canvas
       canvas.width = width;
       canvas.height = height;
-      
-      // Limpiar el canvas y volver a dibujar la firma
       signaturePad.clear();
     });
   </script>
 </body>
+</html>
+
+
+  
 </html>
 
