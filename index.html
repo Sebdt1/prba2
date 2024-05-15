@@ -10,79 +10,79 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      margin: 2%;
+      font-family: Arial, sans-serif; /* Fuente genérica para el cuerpo del documento */
+      margin: 2%; /* Márgenes alrededor del cuerpo del documento */
     }
 
     .input-container {
-      margin-top: 2%;
+      margin-top: 2%; /* Espacio entre los contenedores de entrada */
     }
 
     label {
       display: block;
-      font-size: 2vh;
+      font-size: 2vh; /* Tamaño de fuente para las etiquetas */
     }
 
     select, input[type="text"], textarea {
-      width: 96%;
-      padding: 1vw;
+      width: 96%; /* Ancho del 96% del contenedor */
+      padding: 1vw; /* Relleno para los campos de entrada */
       display: block;
-      margin-top: 1.2vw;
-      margin-bottom: 2.4vw;
-      font-size: 2vh;
-      border: 1px solid #ccc;
-      border-radius: 0.6vw;
-      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1);
+      margin-top: 1.2vw; /* Espacio superior para los campos de entrada */
+      margin-bottom: 2.4vw; /* Espacio inferior para los campos de entrada */
+      font-size: 2vh; /* Tamaño de fuente para los campos de entrada */
+      border: 1px solid #ccc; /* Borde suave */
+      border-radius: 0.6vw; /* Bordes redondeados */
+      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1); /* Sombra suave */
     }
 
     textarea {
-      resize: vertical;
+      resize: vertical; /* Permitir redimensionar verticalmente */
     }
 
     select {
-      appearance: none;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23333%"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-      background-repeat: no-repeat;
-      background-position: right 1.2vw center;
-      padding-right: 3vw;
+      appearance: none; /* Eliminar la apariencia nativa del selector */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23333%"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Agregar un ícono de flecha personalizado */
+      background-repeat: no-repeat; /* No repetir la imagen de fondo */
+      background-position: right 1.2vw center; /* Posición del ícono de la flecha */
+      padding-right: 3vw; /* Espacio para el ícono de la flecha */
     }
 
     button {
-      padding: 1vh 2vh;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 0.6vh;
-      cursor: pointer;
-      font-size: 1.5vh;
-      margin-top: 2vh;
+      padding: 1vh 2vh; /* Relleno para los botones */
+      background-color: #007bff; /* Color de fondo del botón */
+      color: #fff; /* Color del texto del botón */
+      border: none; /* Sin borde */
+      border-radius: 0.6vh; /* Bordes redondeados */
+      cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+      font-size: 1.5vh; /* Tamaño de fuente para los botones */
+      margin-top: 2vh; /* Espacio superior para el botón */
     }
 
     button:hover {
-      background-color: #0056b3;
+      background-color: #0056b3; /* Cambiar el color de fondo al pasar sobre el botón */
     }
 
     #canvas-container {
       width: 96%;
-      height: 300px; /* Ajustamos la altura del contenedor */
-      border: 1px solid #ccc;
-      border-radius: 0.6vw;
-      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1);
-      position: relative;
-      margin-top: 2vw;
+      height: 35vw;
+      border: 1px solid #ccc; /* Borde para el área de firma */
+      border-radius: 0.6vw; /* Bordes redondeados */
+      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1); /* Sombra suave */
+      position: relative; /* Posición relativa para el contenedor */
+      margin-top: 2vw; /* Espacio superior para el área de firma */
     }
 
     canvas {
-      width: 100%; /* Ajustamos el ancho del canvas */
-      height: 100%; /* Ajustamos la altura del canvas */
-      border-radius: 0.6vw;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.6vw; /* Bordes redondeados */
     }
 
     #fecha-hora {
-      position: absolute;
-      bottom: 0.5vw;
-      right: 0.5vw;
-      font-size: 1vh;
+      position: absolute; /* Posición absoluta dentro del contenedor */
+      bottom: 0.5vw; /* Distancia desde abajo */
+      right: 0.5vw; /* Distancia desde la derecha */
+      font-size: 1vh; /* Tamaño de fuente más pequeño */
     }
   </style>
 </head>
@@ -147,12 +147,13 @@
   <script>
     var canvas = document.getElementById('trabajo-recibido-dibujo');
     var signaturePad = new SignaturePad(canvas, {
-      backgroundColor: 'rgb(255, 255, 255)',
-      penColor: 'rgb(0, 0, 0)',
-      minWidth: 1,
-      maxWidth: 2
+      backgroundColor: 'rgb(255, 255, 255)', // Fondo blanco por defecto
+      penColor: 'rgb(0, 0, 0)', // Color de la pluma negro por defecto
+      minWidth: 1, // Ancho mínimo del trazo
+      maxWidth: 2 // Ancho máximo del trazo
     });
 
+    // Función para obtener la fecha y hora actual en formato 12 horas con AM/PM
     function obtenerFechaHoraActual() {
       var fechaHoraActual = new Date();
       var fecha = fechaHoraActual.toLocaleDateString();
@@ -160,6 +161,7 @@
       return fecha + ' ' + hora;
     }
 
+    // Mostrar fecha y hora actual en el cuadro de texto
     document.getElementById('fecha-hora-valor').innerText = obtenerFechaHoraActual();
 
     // Función para enviar el formulario
@@ -207,6 +209,7 @@
         return response.json();
       })
       .then(data => {
+        // Manejar la respuesta del servidor si es necesario
         console.log('Respuesta del servidor:', data);
       })
       .catch(error => {
@@ -214,17 +217,45 @@
       });
     }
 
+    // Mostrar/ocultar campos según el tipo de mantenimiento seleccionado
+    document.getElementById('tipo-mantenimiento').addEventListener('change', function() {
+      var tipoMantenimiento = this.value;
+      var descripcionContainer = document.getElementById('descripcion-container');
+      var especificacionesContainer = document.getElementById('especificaciones-container');
+      var materialesContainer = document.getElementById('materiales-container');
+      var observacionesContainer = document.getElementById('observaciones-container');
+      
+      if (tipoMantenimiento === 'Correctivo') {
+        descripcionContainer.style.display = 'block';
+        especificacionesContainer.style.display = 'block';
+        materialesContainer.style.display = 'block';
+        observacionesContainer.style.display = 'block';
+      } else {
+        descripcionContainer.style.display = 'none';
+        especificacionesContainer.style.display = 'none';
+        materialesContainer.style.display = 'none';
+        observacionesContainer.style.display = 'none';
+      }
+    });
+
+    // Redimensionar el canvas cuando cambia el tamaño de la ventana
     window.addEventListener('resize', function() {
+      // Obtener el contenedor del canvas y su nuevo tamaño
       var canvasContainer = document.getElementById('canvas-container');
       var width = canvasContainer.offsetWidth;
       var height = canvasContainer.offsetHeight;
+      
+      // Establecer el nuevo tamaño del canvas
       canvas.width = width;
       canvas.height = height;
+      
+      // Limpiar el canvas y volver a dibujar la firma
       signaturePad.clear();
     });
   </script>
 </body>
 </html>
+
 
 
 
