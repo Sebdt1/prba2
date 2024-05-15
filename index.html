@@ -163,7 +163,25 @@
 
     // Mostrar fecha y hora actual en el cuadro de texto
     document.getElementById('fecha-hora-valor').innerText = obtenerFechaHoraActual();
-
+    
+        // Mostrar texto "Firma Numero: " seguido del número consecutivo en el canvas
+    function mostrarNumeroConsecutivo() {
+      var ctx = canvas.getContext('2d');
+      var text = 'Firma Numero: 1';
+      var maxWidth = canvas.width * 0.8; // Limitar el ancho del texto al 80% del ancho del canvas
+      var fontSize = 20; // Tamaño de fuente inicial
+      ctx.font = fontSize + 'px Arial'; // Establecer el tamaño de fuente inicial
+      var textWidth = ctx.measureText(text).width; // Ancho del texto
+      // Reducir el tamaño de fuente si el texto es demasiado ancho
+      while (textWidth > maxWidth) {
+        fontSize -= 1; // Reducir el tamaño de fuente
+        ctx.font = fontSize + 'px Arial'; // Establecer el nuevo tamaño de fuente
+        textWidth = ctx.measureText(text).width; // Recalcular el ancho del texto
+      }
+      var x = (canvas.width - textWidth) / 2; // Posición x del texto centrada en el canvas
+      var y = canvas.height - 10; // Posición y del texto cerca de la parte inferior del canvas
+      ctx.fillText(text, x, y); // Dibujar el texto
+    }
     // Función para enviar el formulario
     function enviarFormulario() {
       // Recopilar todos los datos del formulario
