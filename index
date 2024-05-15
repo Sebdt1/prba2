@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Mantenimiento</title>
+  <style>
+    h1 {
+      font-size: 3vh;
+    }
+
+    body {
+      font-family: Arial, sans-serif; /* Fuente genérica para el cuerpo del documento */
+      margin: 2%; /* Márgenes alrededor del cuerpo del documento */
+    }
+
+    .input-container {
+      margin-top: 2%; /* Espacio entre los contenedores de entrada */
+    }
+
+    label {
+      display: block;
+      font-size: 2vh; /* Tamaño de fuente para las etiquetas */
+    }
+
+    select, input[type="text"], textarea {
+      width: 96%; /* Ancho del 96% del contenedor */
+      padding: 1vw; /* Relleno para los campos de entrada */
+      display: block;
+      margin-top: 1.2vw; /* Espacio superior para los campos de entrada */
+      margin-bottom: 2.4vw; /* Espacio inferior para los campos de entrada */
+      font-size: 2vh; /* Tamaño de fuente para los campos de entrada */
+      border: 1px solid #ccc; /* Borde suave */
+      border-radius: 0.6vw; /* Bordes redondeados */
+      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1); /* Sombra suave */
+    }
+
+    textarea {
+      resize: vertical; /* Permitir redimensionar verticalmente */
+    }
+
+    select {
+      appearance: none; /* Eliminar la apariencia nativa del selector */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23333%"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Agregar un ícono de flecha personalizado */
+      background-repeat: no-repeat; /* No repetir la imagen de fondo */
+      background-position: right 1.2vw center; /* Posición del ícono de la flecha */
+      padding-right: 3vw; /* Espacio para el ícono de la flecha */
+    }
+
+    button {
+      padding: 1vh 2vh; /* Relleno para los botones */
+      background-color: #007bff; /* Color de fondo del botón */
+      color: #fff; /* Color del texto del botón */
+      border: none; /* Sin borde */
+      border-radius: 0.6vh; /* Bordes redondeados */
+      cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+      font-size: 1.5vh; /* Tamaño de fuente para los botones */
+      margin-top: 2vh; /* Espacio superior para el botón */
+    }
+
+    button:hover {
+      background-color: #0056b3; /* Cambiar el color de fondo al pasar sobre el botón */
+    }
+
+    #canvas-container {
+      width: 96%;
+      height: 35vw;
+      border: 1px solid #ccc; /* Borde para el área de firma */
+      border-radius: 0.6vw; /* Bordes redondeados */
+      box-shadow: 0 0 0.6vw rgba(0, 0, 0, 0.1); /* Sombra suave */
+      position: relative; /* Posición relativa para el contenedor */
+      margin-top: 2vw; /* Espacio superior para el área de firma */
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.6vw; /* Bordes redondeados */
+    }
+
+    #fecha-hora {
+      position: absolute; /* Posición absoluta dentro del contenedor */
+      bottom: 0.5vw; /* Distancia desde abajo */
+      right: 0.5vw; /* Distancia desde la derecha */
+      font-size: 1vh; /* Tamaño de fuente más pequeño */
+    }
+  </style>
+</head>
+<body>
+  <h1>Formulario de Mantenimiento</h1>
+  <div class="input-container">
+    <label for="numero-solicitud">Número de Solicitud:</label>
+    <input type="text" id="numero-solicitud" name="numero-solicitud">
+  </div>
+  <div class="input-container">
+    <label for="serie-equipo">Serie del Equipo:</label>
+    <input type="text" id="serie-equipo" name="serie-equipo">
+  </div>
+  <div class="input-container">
+    <label for="tipo-mantenimiento">Tipo de Mantenimiento:</label>
+    <select id="tipo-mantenimiento" name="tipo-mantenimiento">
+      <option value="Seleccionar" selected>Seleccionar</option>
+      <option value="Preventivo">Preventivo</option>
+      <option value="Correctivo">Correctivo</option>
+    </select>
+  </div>
+  <div class="input-container" id="descripcion-container" style="display: none;">
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+  </div>
+  <div class="input-container" id="especificaciones-container" style="display: none;">
+    <label for="especificaciones">Especificaciones del Servicio:</label>
+    <textarea id="especificaciones" name="especificaciones" rows="4"></textarea>
+  </div>
+  <div class="input-container" id="materiales-container" style="display: none;">
+    <label for="materiales">Materiales y Repuestos:</label>
+    <textarea id="materiales" name="materiales" rows="4"></textarea>
+  </div>
+  <div class="input-container" id="observaciones-container" style="display: none;">
+    <label for="observaciones">Observaciones:</label>
+    <textarea id="observaciones" name="observaciones" rows="4"></textarea>
+  </div>
+  <div class="input-container">
+    <label for="trabajo-realizado">Trabajo Realizado por:</label>
+    <select id="trabajo-realizado-nombre" name="trabajo-realizado-nombre">
+      <option value="Seleccionar" selected>Seleccionar</option>
+      <option value="SEBASTIAN DIAZ">SEBASTIAN DIAZ</option>
+      <option value="DIEGO REYES">DIEGO REYES</option>
+      <option value="BRAYAN MORA">BRAYAN MORA</option>
+      <option value="CARMEN RAMIREZ">CARMEN RAMIREZ</option>
+      <option value="VALENTINA BELTRAN">VALENTINA BELTRAN</option>
+      <option value="ANGELICA FORERO">ANGELICA FORERO</option>
+    </select>
+  </div>
+  <div class="input-container">
+    <label for="trabajo-recibido">Recibido por:</label>
+    <input type="text" id="trabajo-recibido-nombre" name="trabajo-recibido-nombre" placeholder="Nombre">
+    <input type="text" id="trabajo-recibido-cargo" name="trabajo-recibido-cargo" placeholder="Cargo">
+    <div id="canvas-container">
+      <canvas id="trabajo-recibido-dibujo"></canvas>
+      <div id="fecha-hora">Fecha: <span id="fecha-hora-valor"></span></div>
+    </div>
+  </div>
+  <button onclick="enviarFormulario()">Siguiente</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+  <script>
+    var canvas = document.getElementById('trabajo-recibido-dibujo');
+    var signaturePad = new SignaturePad(canvas, {
+      backgroundColor: 'rgb(255, 255, 255)', // Fondo blanco por defecto
+      penColor: 'rgb(0, 0, 0)', // Color de la pluma negro por defecto
+      minWidth: 1, // Ancho mínimo del trazo
+      maxWidth: 2 // Ancho máximo del trazo
+    });
+
+    // Función para obtener la fecha y hora actual en formato 12 horas con AM/PM
+    function obtenerFechaHoraActual() {
+      var fechaHoraActual = new Date();
+      var fecha = fechaHoraActual.toLocaleDateString();
+      var hora = fechaHoraActual.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+      return fecha + ' ' + hora;
+    }
+
+    // Mostrar fecha y hora actual en el cuadro de texto
+    document.getElementById('fecha-hora-valor').innerText = obtenerFechaHoraActual();
+
+    // Función para enviar el formulario
+    function enviarFormulario() {
+      // Recopilar todos los datos del formulario
+      var numeroSolicitud = document.getElementById('numero-solicitud').value;
+      var serieEquipo = document.getElementById('serie-equipo').value;
+      var tipoMantenimiento = document.getElementById('tipo-mantenimiento').value;
+      var descripcion = document.getElementById('descripcion').value;
+      var especificaciones = document.getElementById('especificaciones').value;
+      var materiales = document.getElementById('materiales').value;
+      var observaciones = document.getElementById('observaciones').value;
+
+      // Obtener la imagen del canvas como base64
+      var dataURL = canvas.toDataURL(); // Esto convierte el contenido del canvas en una imagen base64
+
+      // Obtener la fecha y hora actual
+      var fechaActual = obtenerFechaHoraActual();
+
+      // Crear el objeto de datos a enviar
+      var formData = {
+        numeroSolicitud: numeroSolicitud,
+        serieEquipo: serieEquipo,
+        tipoMantenimiento: tipoMantenimiento,
+        descripcion: descripcion,
+        especificaciones: especificaciones,
+        materiales: materiales,
+        observaciones: observaciones,
+        imagen: dataURL, // Agregar la imagen del canvas como una propiedad del objeto
+        fecha: fechaActual // Agregar la fecha actual al objeto
+      };
+
+      // Realizar una solicitud POST al Script de Google Apps
+      fetch('url_archivo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Hubo un problema al enviar el formulario.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Manejar la respuesta del servidor si es necesario
+        console.log('Respuesta del servidor:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+
+    // Mostrar/ocultar campos según el tipo de mantenimiento seleccionado
+    document.getElementById('tipo-mantenimiento').addEventListener('change', function() {
+      var tipoMantenimiento = this.value;
+      var descripcionContainer = document.getElementById('descripcion-container');
+      var especificacionesContainer = document.getElementById('especificaciones-container');
+      var materialesContainer = document.getElementById('materiales-container');
+      var observacionesContainer = document.getElementById('observaciones-container');
+      
+      if (tipoMantenimiento === 'Correctivo') {
+        descripcionContainer.style.display = 'block';
+        especificacionesContainer.style.display = 'block';
+        materialesContainer.style.display = 'block';
+        observacionesContainer.style.display = 'block';
+      } else {
+        descripcionContainer.style.display = 'none';
+        especificacionesContainer.style.display = 'none';
+        materialesContainer.style.display = 'none';
+        observacionesContainer.style.display = 'none';
+      }
+    });
+
+    // Redimensionar el canvas cuando cambia el tamaño de la ventana
+    window.addEventListener('resize', function() {
+      // Obtener el contenedor del canvas y su nuevo tamaño
+      var canvasContainer = document.getElementById('canvas-container');
+      var width = canvasContainer.offsetWidth;
+      var height = canvasContainer.offsetHeight;
+      
+      // Establecer el nuevo tamaño del canvas
+      canvas.width = width;
+      canvas.height = height;
+      
+      // Limpiar el canvas y volver a dibujar la firma
+      signaturePad.clear();
+    });
+  </script>
+</body>
+</html>
