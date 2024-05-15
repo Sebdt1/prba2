@@ -92,8 +92,46 @@
     <label for="numero-solicitud">Número de Solicitud:</label>
     <input type="text" id="numero-solicitud" name="numero-solicitud">
   </div>
-  <!-- Otros campos del formulario aquí -->
-  
+  <div class="input-container">
+    <label for="serie-equipo">Serie del Equipo:</label>
+    <input type="text" id="serie-equipo" name="serie-equipo">
+  </div>
+  <div class="input-container">
+    <label for="tipo-mantenimiento">Tipo de Mantenimiento:</label>
+    <select id="tipo-mantenimiento" name="tipo-mantenimiento">
+      <option value="Seleccionar" selected>Seleccionar</option>
+      <option value="Preventivo">Preventivo</option>
+      <option value="Correctivo">Correctivo</option>
+    </select>
+  </div>
+  <div class="input-container" id="descripcion-container" style="display: none;">
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+  </div>
+  <div class="input-container" id="especificaciones-container" style="display: none;">
+    <label for="especificaciones">Especificaciones del Servicio:</label>
+    <textarea id="especificaciones" name="especificaciones" rows="4"></textarea>
+  </div>
+  <div class="input-container" id="materiales-container" style="display: none;">
+    <label for="materiales">Materiales y Repuestos:</label>
+    <textarea id="materiales" name="materiales" rows="4"></textarea>
+  </div>
+  <div class="input-container" id="observaciones-container" style="display: none;">
+    <label for="observaciones">Observaciones:</label>
+    <textarea id="observaciones" name="observaciones" rows="4"></textarea>
+  </div>
+  <div class="input-container">
+    <label for="trabajo-realizado">Trabajo Realizado por:</label>
+    <select id="trabajo-realizado-nombre" name="trabajo-realizado-nombre">
+      <option value="Seleccionar" selected>Seleccionar</option>
+      <option value="SEBASTIAN DIAZ">SEBASTIAN DIAZ</option>
+      <option value="DIEGO REYES">DIEGO REYES</option>
+      <option value="BRAYAN MORA">BRAYAN MORA</option>
+      <option value="CARMEN RAMIREZ">CARMEN RAMIREZ</option>
+      <option value="VALENTINA BELTRAN">VALENTINA BELTRAN</option>
+      <option value="ANGELICA FORERO">ANGELICA FORERO</option>
+    </select>
+  </div>
   <div class="input-container">
     <label for="trabajo-recibido">Recibido por:</label>
     <input type="text" id="trabajo-recibido-nombre" name="trabajo-recibido-nombre" placeholder="Nombre">
@@ -124,13 +162,37 @@
 
     document.getElementById('fecha-hora-valor').innerText = obtenerFechaHoraActual();
 
+    // Función para enviar el formulario
     function enviarFormulario() {
-      var dataURL = canvas.toDataURL();
+      // Recopilar todos los datos del formulario
+      var numeroSolicitud = document.getElementById('numero-solicitud').value;
+      var serieEquipo = document.getElementById('serie-equipo').value;
+      var tipoMantenimiento = document.getElementById('tipo-mantenimiento').value;
+      var descripcion = document.getElementById('descripcion').value;
+      var especificaciones = document.getElementById('especificaciones').value;
+      var materiales = document.getElementById('materiales').value;
+      var observaciones = document.getElementById('observaciones').value;
+
+      // Obtener la imagen del canvas como base64
+      var dataURL = canvas.toDataURL(); // Esto convierte el contenido del canvas en una imagen base64
+
+      // Obtener la fecha y hora actual
       var fechaActual = obtenerFechaHoraActual();
+
+      // Crear el objeto de datos a enviar
       var formData = {
-        // Incluir aquí los datos del formulario
+        numeroSolicitud: numeroSolicitud,
+        serieEquipo: serieEquipo,
+        tipoMantenimiento: tipoMantenimiento,
+        descripcion: descripcion,
+        especificaciones: especificaciones,
+        materiales: materiales,
+        observaciones: observaciones,
+        imagen: dataURL, // Agregar la imagen del canvas como una propiedad del objeto
+        fecha: fechaActual // Agregar la fecha actual al objeto
       };
 
+      // Realizar una solicitud POST al Script de Google Apps
       fetch('https://script.google.com/macros/s/AKfycbxTopc7gMQFfVtBA5CWjw6AxGhN05gPNSxWk7oDON1XyGV6-88pHMwPTUu9mzi1z0p0RQ/exec', {
         method: 'POST',
         headers: {
@@ -165,6 +227,5 @@
 </html>
 
 
-  
-</html>
+
 
